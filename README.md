@@ -1,10 +1,10 @@
 # ActionML Harness
 
-The ActionML Harness project is a framework for creating Machine Learning Applications. It is mean to have all the infrastructure for arbitrary input in the ETL pattern, several data stores, and result servers. The goals of the project are:
+The ActionML Harness project is a scaffold for creating Machine Learning Applications. It is meant to have the infrastructure for arbitrary input in the lambda and kappa patterns, several data stores, and result servers. The goals of the project are:
 
  - Extreme flexibility to use ML code or define custom algorithms
- - Ease of deployment using a micro-service architecture with optional lambda or streaming data flow
-   - Containerized deployment of micro-services to match algorithm needs
+ - Ease of deployment using a micro-service architecture with optional lambda or kappa streaming/online data flow
+   - Containerized deployment of micro-services to match algorithm needs, like a recipe
    - A GUI to control, monitor and modify setup
    - A GUI for each algorithm's tuning, cross-validation results, algorithm specific analytics, A/B testing results
  - Made to produce nearly turnkey systems that are easy to deploy and manage
@@ -16,7 +16,7 @@ The ActionML Harness project is a framework for creating Machine Learning Applic
  - Support parallel distributed model creation (as with Spark's MLlib)
  - Support efficient local model calculation thru streaming algorithms like Vowpal Wabbit or T-Digest, or single machine implementations like TensorFlow.
  - Implement several of the most broadly used algorithms like:
-   - The Universal Recommender a very generalized an powerful recommender
+   - The Universal Recommender
    - The Correlated Cross-Occurrence (CCO) engine for correlation analysis
    - The Page Variant Multi-armed Bandit for automated A/B Testing)
    - Behavioral Search for augmenting search with personalized or group behavioral data 
