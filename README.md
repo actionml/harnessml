@@ -1,6 +1,6 @@
-# ActionML Harness
+# ActionML HarnessML
 
-The ActionML Harness project is a scaffold for creating Machine Learning Applications. It is meant to have the infrastructure for arbitrary input in the lambda and kappa patterns, several data stores, and result servers. 
+The ActionML HarnessML project is a scaffold for creating Machine Learning Applications. It is meant to have the infrastructure for arbitrary input in the lambda and kappa patterns, several data stores, and result servers. 
 
 ## Goals
 
