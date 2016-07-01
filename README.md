@@ -2,7 +2,7 @@
 
 The HarnessML project is a scaffold for creating Machine Learning Applications. 
 
-It is meant to have the infrastructure for arbitrary input in the batch, lambda, and kappa patterns, several data stores, and result servers. These components are implemented as compossible microservices. Pick an algorithm and microservice options and you get a running production ready Machine Learning System complete with input server, ML magic, and result server. If you want file output, no problem, replace the ResultService microservice with a ResultWriter et voila. Since the microservices are compossable you can share them between algorithms&mdash;and some aren't so "micro", like say Spark.
+It is meant to have the infrastructure for arbitrary input in the batch, lambda, and kappa patterns, several data stores, and result servers. These components are implemented as compossible microservices. Pick an algorithm and microservice options and you get a running production ready Machine Learning System complete with input server, ML magic, and result server. If you want file output, no problem, replace the ResultService microservice with a ResultWriter et voila. Since the microservices are compossible you can share them between algorithms&mdash;and some aren't so "micro", like say Spark.
 
 As a shortcut you can think of HarnessML as the next generation of PredictionIO though it will depart from that project in several important ways.
 
@@ -11,11 +11,15 @@ As a shortcut you can think of HarnessML as the next generation of PredictionIO 
  - **Scaffolding**: Provide a set of generalized services and scaffolding to enable creation and deployment of production ready Machine Learning algorithms.
  - **Flexibility**: Extreme flexibility to use whatever ML code is convenient to define custom algorithms&mdash;not limited to Spark or any one technology
  - **Microservice Architecture**: Microservices and recipe based deployment
+   - Completely based on either existing services or new microservices that are in every case containerized.
+   - Microservices may have either a synchronous REST API or an asynchronous message based API&mdash;the later allowing for easy scalability.
+   - Deployment of microservice through an external orchestration layer (possibly scripted Docker-machine, possibly Chef recipes, TBD)
+   - Microservices will all have base discovery and auto connection build in to ease orchestration and allow services to be added to a running system.
    - Recipes for containerized deployment of microservices to match algorithm needs
    - Compossible recipes that share services and containers
    - Every plugin algorithm should include a recipe for automated deployment
-   - A GUI to control, monitor and modify system setup
-   - Hooks so an algorithm can provide its own GUI for tuning, cross-validation results, and algorithm specific analytics or features
+   - **Optional**: A GUI to control, monitor and modify system setup
+   - **Optional**: Hooks so an algorithm can provide its own plugin GUI for tuning, cross-validation results, and algorithm specific analytics or features
  - **Batch, Lambda, and Kappa** Support for batch, lambda (batch + realtime), or kappa (realtime streaming online) data flow
    - Support parallel distributed model creation (as with Spark's MLlib)
    - Support efficient local model calculation thru streaming algorithms like Vowpal Wabbit or T-Digest, or single machine implementations like TensorFlow.
@@ -39,6 +43,12 @@ As a shortcut you can think of HarnessML as the next generation of PredictionIO 
    - Multiple models addressed by ids (Topic ids or REST resource ids)
    - Auto-cluster setup, input and output servers will detect other instances and coordinate load sharing with the minimum of setup (similar to Elasticsearch)
    - TLS (SSL/HTTPS) and authentication supported optionally for all external APIs
+ - **I/O Endpoints**
+   - Auto load balanced
+   - No single point of failure
+   - TLS and auth supported
+   - From the outside a running system looks a bit like an Elasticsearch cluster in that it operates like a peer based cluster with all nodes able to behave like a master to spread load and if any node goes down no data is lost.
+   - Any node is able to handle requests to any algorithm or more precisely any dataset (data + model + algorithm) 
  - **First Algorithms**: Implement several of the most broadly used PredictionIO algorithms and ones that stretch the architecture to the limits of the batch - lambda - kappa spectrum using several ML libs and techniques
    - The Universal Recommender, based on Correlated Cross-Occurrence (CCO) engine from Apache Mahout&mdash;Lambda
    - Text Classification&mdash;Lambda
